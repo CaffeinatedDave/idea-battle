@@ -14,6 +14,9 @@ Dotenv.load
 use Rack::Logger
 set :show_exceptions, :after_handler
 
+set :server, 'thin'
+set :bind, '0.0.0.0'
+
 configure :production, :development do
   db = URI.parse(ENV['DATABASE_URL'])
 
@@ -27,6 +30,7 @@ configure :production, :development do
   )
 end
 
+$votes = []
 
 helpers do
   def logger
@@ -85,4 +89,11 @@ after do
   # Close the connection after the request is done so that we don't
   # deplete the ActiveRecord connection pool.
   ActiveRecord::Base.connection.close
+end
+
+
+Thread.new do 
+  while true do
+    sleep 1
+  end
 end

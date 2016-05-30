@@ -237,7 +237,7 @@ insert into ideas (title, description) values ('Halo'' courses','Halo'' courses'
 insert into ideas (title, description) values ('Heritage walks','Heritage walks - colour coded - around city (like Boston) that encouratges walking and discovery of our cultural assets aka breweries ');
 insert into ideas (title, description) values ('Higher ''arts'' institutions - drama schools, art facilities ','');
 insert into ideas (title, description) values ('Host awards in Sheffield ','Get BBC to give us hosting of something like BAFTAs');
-insert into ideas (title, description) values ('Host the greatest exhibition of the north','','Do it the Sheffield Way');
+insert into ideas (title, description) values ('Host the greatest exhibition of the north','Do it the Sheffield Way');
 insert into ideas (title, description) values ('Housing co-operatives for students','HAs, students and developers funding co-operative purchase of premises');
 insert into ideas (title, description) values ('Hs2 in city centre','');
 insert into ideas (title, description) values ('Hubs for Change','Enabiling our mini villages as hubs for change - vibrancy');
@@ -392,7 +392,7 @@ insert into ideas (title, description) values ('Schools/camps for community rela
 insert into ideas (title, description) values ('Sculptures of men marching to peaks','');
 insert into ideas (title, description) values ('Sensory mental health centre','Mental health centre: a sensory environment created to aid mental health and well-being and alleviate criminality ');
 insert into ideas (title, description) values ('Set up a centre for city-region innovation, advising other city regions on how to innovate','');
-insert into ideas (title, description) values ('Set up enterprise zones for digital small start ups rather than manufacturing. Do it internally, not on brownfield sites. Fit out warehouses instead');
+insert into ideas (title, description) values ('Set up enterprise zones','For digital small start ups rather than manufacturing. Do it internally, not on brownfield sites. Fit out warehouses instead');
 insert into ideas (title, description) values ('Shared economy','Sharing economy on a city scheme, eg. AirBNB with everything else');
 insert into ideas (title, description) values ('Shared office space between firms','Shared office spaces between multiple firms to inspire collaboration');
 insert into ideas (title, description) values ('Shared responsibility of city powers','Transfer more powers around planning, regulation, etc from the local autorities to a group of ''change agents'' who can work within sector values but do the right thing for the city - create ''shared responsibility.'' trust & deregulation of public services');
@@ -408,7 +408,6 @@ insert into ideas (title, description) values ('Sheffield Funding Circle','Crowd
 insert into ideas (title, description) values ('Sheffield Hub','For intereted parties to contribute and share ideas. Create a public business');
 insert into ideas (title, description) values ('Sheffield Innovation Prize','200,000 biannual prize and mentoring competition for high-value innovation');
 insert into ideas (title, description) values ('Sheffield Living Wage','Make the Sheffield Living wage higher than the National Living Wage');
-insert into ideas (title, description) values ('Sheffield Oyster card','');
 insert into ideas (title, description) values ('Sheffield Oyster card','Oyster card connecting all trames, buses, trains etc - plus improved routes');
 insert into ideas (title, description) values ('Sheffield Parliament','Sheffield Parliament. Sheffield currency to implement');
 insert into ideas (title, description) values ('Sheffield Pound','Sheffield Pound. Telepresence portals, mobility (could be ski lift connecting hills of Sheffield), free wifi, Sheffield oyster card');
@@ -425,7 +424,7 @@ insert into ideas (title, description) values ('Snooker Halls','Snooker halls (e
 insert into ideas (title, description) values ('Social Innovation UTC','?');
 insert into ideas (title, description) values ('Social/Financial reform','Demand social and financial reform');
 insert into ideas (title, description) values ('Spaces for start-ups','Empty offices offered to start-ups');
-insert into ideas (title, description) values ('Sport / recreation centres of excellence across the region put in centres to celebrate geography: canoeing centre, cycling trails, rock climbing');
+insert into ideas (title, description) values ('Sport / recreation centres of excellence across the region','Put in centres to celebrate geography: canoeing centre, cycling trails, rock climbing');
 insert into ideas (title, description) values ('Stainless steel statue of Richard Hawley outside the station','');
 insert into ideas (title, description) values ('Start up centre','Start up centre for retailers - like the corn exchange in Leeds. A start up for smaller retailers to try on their ideas, how to cost rents, short leases and lots of events to bring people in, tied-ins with small business advice group help');
 insert into ideas (title, description) values ('Start up hubs','');
