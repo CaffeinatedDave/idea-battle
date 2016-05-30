@@ -118,10 +118,18 @@ post '/game/vote/?' do
       Ideas.update(right[:id], {:seen => right[:seen] + 1, :chosen => right[:chosen] + 1})
     end
     $votes.delete(uuid)
+    {:status => "OK"}.to_json
+  else
+    if question == nil
+      status 404
+      {:status => "NOT FOUND"}.to_json
+    else
+      status 400
+      {:status => "BAD REQUEST"}.to_json
+    end 
   end
   
   # return OK regardless
-  {:status => "OK"}.to_json
 end
 
 options '/game/vote/?' do
