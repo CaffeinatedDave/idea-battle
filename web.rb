@@ -30,7 +30,8 @@ configure :production, :development do
   )
 end
 
-$votes = []
+$votes = {}
+$ids = []
 
 helpers do
   def logger
@@ -44,7 +45,7 @@ not_found do
 end
 
 before do
-  if ENV['debug'] == true
+  if ENV['debug']
     logger.info request.env.to_s
   end
 end
@@ -61,26 +62,43 @@ end
 
 get '/game/?' do  
   # find two ideas
-  mockIdeaLeft = {:title => "I'm a left idea", :description => "I have no idea what I'm doing...."}
-  mockIdeaRight = {:title => "I'm a rightt idea", :description => "I have no idea what I'm doing either...."}
+  leftId = $ids.sample
+  rightId = $ids.sample
+ 
+  leftIdea = Ideas.find(leftId) 
+  rightIdea = Ideas.find(rightId) 
 
   # generate uuid
   uuid = SecureRandom.uuid
 
-  # save question to DB
+  # save question to internal hash
+  $votes[uuid] = {:left => leftId, :right => rightId, :expires => (Time.now + 300).to_i}
   
   # return question to caller
-  {
+  response = {
     :uuid => uuid,
-    :left => mockIdeaLeft,
-    :right => mockIdeaRight
-  }.to_json
+    :left => leftIdea,
+    :right => rightIdea
+  }
+  
+  response.to_json
 end 
 
 post '/game/vote/?' do
-  # find question asked
-  # register vote if valid
+  query = JSON.parse(request.body.read, symbolize_keys: true)
+  logger.info query.to_s
 
+  uuid = query["uuid"]
+
+  logger.info("Looking for uuid: " + uuid.to_s)
+  # find question asked
+  question = $votes[uuid]
+  # register vote if valid
+  if question != nil 
+    logger.info("Voting for " + query["vote"].to_s + " given the option of " + question[:left].to_s + " or " + question[:right].to_s)
+    $votes.delete(uuid)
+  end
+  
   # return OK regardless
   {:status => "OK"}.to_json
 end
@@ -94,6 +112,16 @@ end
 
 Thread.new do 
   while true do
-    sleep 1
+    $votes = $votes.select { |_,v| (v[:expires] >= Time.now.to_i) }
+    warn "Votes buffer contains " + $votes.size.to_s + " entries"
+    sleep 30
+  end
+end
+
+Thread.new do 
+  while true do
+    $ids = Ideas.all.map(&:id)
+    warn "Got " + $ids.size.to_s + " ideas"
+    sleep 3600
   end
 end
