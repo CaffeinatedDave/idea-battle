@@ -76,14 +76,14 @@ get '/game/?' do
   $votes[uuid] = {:left => leftId, :right => rightId, :expires => (Time.now + 300).to_i}
   
   # return question to caller
-  response = {
+  resp = {
     :uuid => uuid,
     :left => leftIdea,
     :right => rightIdea
   }
   
   response.headers['Content-type'] = 'application/json'
-  response.to_json
+  resp.to_json
 end 
 
 post '/game/vote/?' do
