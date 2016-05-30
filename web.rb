@@ -54,7 +54,7 @@ end
 
 get "/list/?" do
   # Get all ideas, sorted by vote %s???
-  # v2. Funk it.
+  Ideas.where("seen > 0").order("chosen/seen desc").to_json
 end
 
 get '/' do
@@ -87,7 +87,13 @@ get '/game/?' do
 end 
 
 post '/game/vote/?' do
-  query = JSON.parse(request.body.read, symbolize_keys: true)
+  body = request.body.read
+  begin
+    query = JSON.parse(body, symbolize_keys: true)
+  rescue
+    # Ok so it's not json... hope it's real args..
+    query = {"uuid" => request["uuid"], "vote" => request["vote"].to_i}
+  end
   logger.info query.to_s
 
   uuid = query["uuid"]
@@ -142,6 +148,7 @@ Thread.new do
   while true do
     $ids = Ideas.all.map(&:id)
     warn "Got " + $ids.size.to_s + " ideas"
+    ActiveRecord::Base.connection.close
     sleep 3600
   end
 end
