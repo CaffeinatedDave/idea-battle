@@ -96,13 +96,18 @@ post '/game/vote/?' do
   # find question asked
   question = $votes[uuid]
   # register vote if valid
-  if question != nil 
+  if question != nil && (query["vote"] == question[:left] || query["vote"] == question[:right])
     logger.info("Voting for " + query["vote"].to_s + " given the option of " + question[:left].to_s + " or " + question[:right].to_s)
     $votes.delete(uuid)
   end
   
   # return OK regardless
   {:status => "OK"}.to_json
+end
+
+options '/game/vote/?' do
+  response.headers['Access-Control-Allow-Methods'] = 'POST'
+  ""
 end
 
 after do
