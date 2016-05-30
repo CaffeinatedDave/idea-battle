@@ -54,7 +54,7 @@ end
 
 get "/list/?" do
   # Get all ideas, sorted by vote %s???
-  Ideas.where("seen > 0").order("chosen/seen desc").to_json
+  Ideas.where("seen > 0").order("chosen/seen desc, chosen desc, seen asc").to_json
 end
 
 get '/' do
