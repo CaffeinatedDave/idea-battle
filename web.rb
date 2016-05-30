@@ -1,10 +1,12 @@
-require 'sinatra'
-require 'sinatra/activerecord'
-require 'erb'
 require 'dotenv'
-require 'open-uri'
+require 'erb'
 require 'erubis'
 require 'json'
+require 'open-uri'
+require 'securerandom'
+require 'sinatra'
+require 'sinatra/activerecord'
+
 require './models/ideas'
 require './models/votes'
 
@@ -56,15 +58,28 @@ end
 
 get '/game/?' do  
   # find two ideas
+  mockIdeaLeft = {:title => "I'm a left idea", :description => "I have no idea what I'm doing...."}
+  mockIdeaRight = {:title => "I'm a rightt idea", :description => "I have no idea what I'm doing either...."}
+
   # generate uuid
+  uuid = SecureRandom.uuid
+
   # save question to DB
+  
   # return question to caller
+  {
+    :uuid => uuid,
+    :left => mockIdeaLeft,
+    :right => mockIdeaRight
+  }.to_json
 end 
 
 post '/game/vote/?' do
   # find question asked
   # register vote if valid
+
   # return OK regardless
+  {:status => "OK"}.to_json
 end
 
 after do
