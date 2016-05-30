@@ -37,6 +37,7 @@ GEM
     sinatra-activerecord (2.0.9)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sinatra-cross_origin (0.3.2)
     thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -58,6 +59,7 @@ DEPENDENCIES
   pg
   sinatra (= 1.4.5)
   sinatra-activerecord
+  sinatra-cross_origin
   thin
 
 BUNDLED WITH

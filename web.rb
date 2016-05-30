@@ -6,6 +6,7 @@ require 'open-uri'
 require 'securerandom'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/cross_origin'
 
 require './models/ideas'
 
@@ -18,6 +19,7 @@ set :server, 'thin'
 set :bind, '0.0.0.0'
 
 configure :production, :development do
+  enable :cross_origin
   db = URI.parse(ENV['DATABASE_URL'])
 
   ActiveRecord::Base.establish_connection(
