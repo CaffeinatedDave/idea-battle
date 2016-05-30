@@ -95,9 +95,22 @@ post '/game/vote/?' do
   logger.info("Looking for uuid: " + uuid.to_s)
   # find question asked
   question = $votes[uuid]
+  vote = query["vote"]
+
   # register vote if valid
-  if question != nil && (query["vote"] == question[:left] || query["vote"] == question[:right])
-    logger.info("Voting for " + query["vote"].to_s + " given the option of " + question[:left].to_s + " or " + question[:right].to_s)
+  if question != nil && (vote == question[:left] || vote == question[:right])
+    logger.info("Voting for " + vote.to_s + " given the option of " + question[:left].to_s + " or " + question[:right].to_s)
+
+    left = Ideas.find(question[:left])
+    right = Ideas.find(question[:right])
+
+    if left[:id] == vote
+      Ideas.update(left[:id], {:seen => left[:seen] + 1, :chosen => left[:chosen] + 1})
+      Ideas.update(right[:id], {:seen => right[:seen] + 1})
+    else 
+      Ideas.update(left[:id], {:seen => left[:seen] + 1})
+      Ideas.update(right[:id], {:seen => right[:seen] + 1, :chosen => right[:chosen] + 1})
+    end
     $votes.delete(uuid)
   end
   
