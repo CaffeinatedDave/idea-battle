@@ -48,18 +48,17 @@ end
 
 before do
   if ENV['debug']
-    logger.info request.env.to_s
+    logger.debug request.env.to_s
   end
-end
-
-get "/list/?" do
-  # Get all ideas, sorted by vote %s???
-  Ideas.where("seen > 0").order("chosen/seen desc, chosen desc, seen asc").to_json
 end
 
 get '/' do
   # trivially just load a single page
   erb :index
+end
+
+get "/list/?" do
+  Ideas.where("seen > 0").order("chosen/seen desc, chosen desc, seen asc").to_json
 end
 
 get '/game/?' do  
@@ -83,11 +82,13 @@ get '/game/?' do
     :right => rightIdea
   }
   
+  response.headers['Content-type'] = 'application/json'
   response.to_json
 end 
 
 post '/game/vote/?' do
   body = request.body.read
+  response.headers['Content-type'] = 'application/json'
   begin
     query = JSON.parse(body, symbolize_keys: true)
   rescue
