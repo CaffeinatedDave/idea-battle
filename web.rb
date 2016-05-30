@@ -8,7 +8,6 @@ require 'sinatra'
 require 'sinatra/activerecord'
 
 require './models/ideas'
-require './models/votes'
 
 Dotenv.load
 
