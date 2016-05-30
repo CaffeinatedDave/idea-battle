@@ -5,9 +5,8 @@ $(function() {
 function options() {
     $.ajax({
         dataType: "json",
-        url: "http://idea-battle.herokuapp.com/game"
+        url: "/game"
     }).done(function(data, textStatus, jqXHR){
-        //console.log(data);
         $('#left .panel-title').html(data.left.title);
         $('#left .description').html(data.left.description);
         $('#left button').data('id', data.left.id).click(function() {
@@ -53,11 +52,9 @@ function vote(e) {
                 method: "POST",
                 dataType: "json",
                 contentType: "application/json;",
-                url: "http://idea-battle.herokuapp.com/game/vote",
+                url: "/game/vote",
                 processData: false,
                 data: JSON.stringify({'vote': $(e + ' button').data('id'), 'uuid': $('#vote').data('uuid')})
-            }).done(function(data, textStatus, jqXHR){
-                console.log(data);
             }).always(function() {
                 $(".panel button").unbind();
                 $("#left").css({x: '-1000px'});
@@ -67,4 +64,3 @@ function vote(e) {
         }
     });
 }
-//# sourceMappingURL=app.js.map
