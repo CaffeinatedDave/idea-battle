@@ -105,6 +105,7 @@ post '/game/vote/?' do
 
   # register vote if valid
   if question != nil && (vote == question[:left] || vote == question[:right])
+    $votes.delete(uuid)
     logger.info("Voting for " + vote.to_s + " given the option of " + question[:left].to_s + " or " + question[:right].to_s)
 
     left = Ideas.find(question[:left])
@@ -117,7 +118,6 @@ post '/game/vote/?' do
       Ideas.update(left[:id], {:seen => left[:seen] + 1})
       Ideas.update(right[:id], {:seen => right[:seen] + 1, :chosen => right[:chosen] + 1})
     end
-    $votes.delete(uuid)
     {:status => "OK"}.to_json
   else
     if question == nil
