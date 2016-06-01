@@ -83,6 +83,9 @@ get '/game/?' do
   }
   
   response.headers['Content-type'] = 'application/json'
+  response.headers['Cache-Control'] = 'no-cache, no-store'
+  response.headers['Pragma'] = 'no-cache'
+  response.headers['Expires'] = '0'
   resp.to_json
 end 
 
