@@ -63,8 +63,9 @@ end
 
 get '/game/?' do  
   # find two ideas
-  leftId = $ids.sample
-  rightId = $ids.sample
+  pick = $ids.sample(2)
+  leftId = pick[0]
+  rightId = pick[1]
  
   leftIdea = Ideas.find(leftId) 
   rightIdea = Ideas.find(rightId) 
@@ -81,6 +82,9 @@ get '/game/?' do
     :left => leftIdea,
     :right => rightIdea
   }
+
+  logger.info(uuid + " -- Option 1 : " + leftIdea[:title] + "(" + leftIdea[:id].to_s + ")"
+  logger.info(uuid + " -- Option 2 : " + rightIdea[:title] + "(" + rightIdea[:id].to_s + ")"
   
   response.headers['Content-type'] = 'application/json'
   response.headers['Cache-Control'] = 'no-cache, no-store'
@@ -110,6 +114,7 @@ post '/game/vote/?' do
   # register vote if valid
   if question != nil && (vote == question[:left] || vote == question[:right])
     $votes.delete(uuid)
+
     logger.info("Voting for " + vote.to_s + " given the option of " + question[:left].to_s + " or " + question[:right].to_s)
 
     left = Ideas.find(question[:left])
