@@ -83,8 +83,8 @@ get '/game/?' do
     :right => rightIdea
   }
 
-  logger.info(uuid + " -- Option 1 : " + leftIdea[:title] + "(" + leftIdea[:id].to_s + ")"
-  logger.info(uuid + " -- Option 2 : " + rightIdea[:title] + "(" + rightIdea[:id].to_s + ")"
+  logger.info(uuid + " -- Option 1 : " + leftIdea[:title] + "(" + leftIdea[:id].to_s + ")")
+  logger.info(uuid + " -- Option 2 : " + rightIdea[:title] + "(" + rightIdea[:id].to_s + ")")
   
   response.headers['Content-type'] = 'application/json'
   response.headers['Cache-Control'] = 'no-cache, no-store'
