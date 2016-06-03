@@ -62,6 +62,10 @@ get "/list/?" do
 end
 
 get '/game/?' do  
+  # crude, but whatevs...
+  while $ids.size == 0
+  end
+
   # find two ideas
   pick = $ids.sample(2)
   leftId = pick[0]
